@@ -1,6 +1,14 @@
 import React from "react";
 import { Router, useRouter } from "next/router";
-import { Loader, Image, Grid, Divider, Header, List, Popup } from "semantic-ui-react";
+import {
+  Loader,
+  Image,
+  Grid,
+  Divider,
+  Header,
+  List,
+  Popup,
+} from "semantic-ui-react";
 import Link from "next/link";
 
 export default function PokemonName() {
@@ -42,20 +50,25 @@ export default function PokemonName() {
           );
         });
 
-  const pokemonAbility =
-    pokemonInfo.abilities.length === 0
-      ? []
-      : pokemonInfo.abilities.map((ability) => {
-          return (
-            <List key={ability.ability.name}>
-              <Popup 
-                trigger={<List.Item>{ability.ability.name}</List.Item>}
-                on="hover"
-                content="test"
-              />
-            </List>
-          );
-        });
+  // ------------------------------------------------------------------------TO-DO----------------------------------
+  // ----------------------------------------------------------Add on hover description of abilities----------------
+
+  // const pokemonAbility =
+  //   pokemonInfo.abilities.length === 0
+  //     ? []
+  //     : pokemonInfo.abilities.map((ability) => {
+  //         return (
+  //           <List key={ability.ability.name}>
+  //             <Popup
+  //               trigger={<List.Item>{ability.ability.name}</List.Item>}
+  //               on="hover"
+  //               content={`https://pokeapi.co/api/v2/ability/${id}`}
+  //             />
+  //           </List>
+  //         );
+  //       });
+
+  //       console.log(pokemonInfo)
 
   return (
     <>
@@ -92,7 +105,7 @@ export default function PokemonName() {
                     <Grid.Column>{pokemonStats}</Grid.Column>
                     <Grid.Column>
                       <List>
-                        <List.Item>{pokemonAbility}</List.Item>
+                        {/* <List.Item>{pokemonAbility}</List.Item> */}
                       </List>
                     </Grid.Column>
                   </Grid.Row>
