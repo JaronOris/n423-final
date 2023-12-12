@@ -10,12 +10,14 @@ import {
   Popup,
 } from "semantic-ui-react";
 import Link from "next/link";
+import PokeCard from "@/components/PokeCard";
 
 export default function PokemonName() {
   const [pokemonInfo, setPokemonInfo] = React.useState({
     loading: true,
     stats: [],
     abilities: [],
+    abilityName: [],
   });
   const router = useRouter();
 
@@ -33,6 +35,7 @@ export default function PokemonName() {
             name: router.query.name,
             stats: [],
             abilities: [],
+
           })
         );
     }
@@ -50,25 +53,9 @@ export default function PokemonName() {
           );
         });
 
-  // ------------------------------------------------------------------------TO-DO----------------------------------
-  // ----------------------------------------------------------Add on hover description of abilities----------------
-
-  // const pokemonAbility =
-  //   pokemonInfo.abilities.length === 0
-  //     ? []
-  //     : pokemonInfo.abilities.map((ability) => {
-  //         return (
-  //           <List key={ability.ability.name}>
-  //             <Popup
-  //               trigger={<List.Item>{ability.ability.name}</List.Item>}
-  //               on="hover"
-  //               content={`https://pokeapi.co/api/v2/ability/${id}`}
-  //             />
-  //           </List>
-  //         );
-  //       });
-
-  //       console.log(pokemonInfo)
+  // ---------------------TO-DO---------------
+  // ------Add on hover description of abilities------
+  //------Or nested route for ability description-----
 
   return (
     <>
@@ -85,12 +72,11 @@ export default function PokemonName() {
               <>
                 <Grid divided="vertically">
                   <Grid.Row columns={3} centered>
-                    <Grid.Column>
-                      <Image
+                  <PokeCard 
+                        key={pokemonInfo.id}
                         src={pokemonInfo.sprites.other.home.front_default}
-                        alt=""
+                        id={pokemonInfo.id}
                       />
-                    </Grid.Column>
                     <Grid.Column>
                       <Image
                         src={pokemonInfo.sprites.other.home.front_shiny}
@@ -105,7 +91,7 @@ export default function PokemonName() {
                     <Grid.Column>{pokemonStats}</Grid.Column>
                     <Grid.Column>
                       <List>
-                        {/* <List.Item>{pokemonAbility}</List.Item> */}
+                        <List.Item>{pokemonAbilityName}</List.Item>
                       </List>
                     </Grid.Column>
                   </Grid.Row>
